@@ -1,7 +1,7 @@
 # Creating an EC2 Security Group
 
 1. Go to www.aws.amazon.com and click ***Sign In to the Console***:<p>
-![](images/image001.png?raw=true)
+![](https://user-images.githubusercontent.com/7594950/107854721-e1533180-6deb-11eb-9f01-7d4ba36d8460.png)
 
 2. Once logged in, type ***EC2*** on the search bar and then select the ***EC2*** service from the list:<p>
 ![](images/image002.png?raw=true)
