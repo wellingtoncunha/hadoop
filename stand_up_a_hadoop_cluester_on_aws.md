@@ -79,9 +79,16 @@ In order to make it easy for configuring our cluster, we are going to provision 
 
 9. For some unknown reason, one of the scripts required to start one of the Hadoop services is not reading the JAVA_HOME variable correcly. So, let's hard-code it on the script:
     ```bash
-    sudo nano $HADOOP_HOME/sbin/hadoop-env.sh ?????
+    sudo nano $HADOOP_CONF_DIR/hadoop-env.sh
     ```
 
-    The piece that needs to be set is at the line ##, so, just replace the placeholder {} by the path (/usr/lib/jvm/java-8-openjdk-amd64)  
-hard code JAVA_HOME (/usr/lib/jvm/java-8-openjdk-amd64) to hadoop-env.sh:
-sudo nano hadoop-env.sh
+    The piece that needs to be set is at the line 25, so, just replace the placeholder ${JAVA_HOME} by the JAVA path (/usr/lib/jvm/java-8-openjdk-amd64):
+    * Before:
+    <img width="798" alt="image200" src="https://user-images.githubusercontent.com/7594950/107885305-737c3800-6ec7-11eb-84a0-65f77dadae67.png">
+    * After:
+    <img width="763" alt="image201" src="https://user-images.githubusercontent.com/7594950/107885324-8abb2580-6ec7-11eb-8c49-734aed0293f7.png">
+
+10. So we are now good to generate an AIM image for this server and will be able to use it to stand up new Hadoop clusters. Please, check [How-to create an AWS EC2 instance AIM image](generate_EC2_image.md)
+
+
+This how-to guide is an extension of [Setup 4 Node Hadoop Cluster on AWS EC2 Instances](https://medium.com/@jeevananandanne/setup-4-node-hadoop-cluster-on-aws-ec2-instances-1c1eeb4453bd) article by Jeevan Anand.

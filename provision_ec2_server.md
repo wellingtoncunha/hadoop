@@ -6,7 +6,7 @@
 2. Once logged in, type ***EC2*** on the search bar and then select the ***EC2*** service from the list:<p>
 ![image002](https://user-images.githubusercontent.com/7594950/107884694-6dd12300-6ec4-11eb-8186-2119fff76b49.png)
 
-3. On the right panel of ***EC2 console***, search for ***Key Pairs*** under ***Network & Security*** section:<p>
+3. On the right panel of ***EC2 console***, search for ***Instances*** under ***Instances*** section:<p>
 ![image007](https://user-images.githubusercontent.com/7594950/107884971-a9b8b800-6ec5-11eb-84b2-66bb3ca67935.png)
 
 4. On ***EC2 console*** click on ***Launch Instances*** button:<p>
