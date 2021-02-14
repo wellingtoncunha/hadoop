@@ -3,10 +3,10 @@
 One of ways AWS provides to enable access to an EC2 is with the use of a [PEM Key](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail). So, first step when configuring a fresh account is to generate a PEM file for further access to EC2 servers created under the account.
 
 1. Go to www.aws.amazon.com and click ***Sign In to the Console***:<p>
-![](https://user-images.githubusercontent.com/7594950/107854721-e1533180-6deb-11eb-9f01-7d4ba36d8460.png)
+![image001](https://user-images.githubusercontent.com/7594950/107854721-e1533180-6deb-11eb-9f01-7d4ba36d8460.png)
 
 2. Once logged in, type ***EC2*** on the search bar and then select the ***EC2*** service from the list:<p>
-![](https://user-images.githubusercontent.com/7594950/107884694-6dd12300-6ec4-11eb-8186-2119fff76b49.png)
+![image002](https://user-images.githubusercontent.com/7594950/107884694-6dd12300-6ec4-11eb-8186-2119fff76b49.png)
 
 3. On the right panel of ***EC2 console***, search for ***Key Pairs*** under ***Network & Security*** section:<p>
 ![image003](https://user-images.githubusercontent.com/7594950/107884874-34e57e00-6ec5-11eb-8c13-ba9dbafbe71f.png)
