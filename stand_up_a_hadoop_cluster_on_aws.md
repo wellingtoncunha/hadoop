@@ -252,7 +252,7 @@ The following set of steps must be done on all nodes, including the Name Node
     sudo nano hdfs-site.xml
     ```
 
-    Replace the configuration section of template file with the following, adding the Private IPv4 address of Name Node to the appropriate placeholder:
+    Replace the configuration section of template file with the following. You can change the number of replicas for the data (here we are sticking with 3, which is the default) and/or the HDFS location:
 
     ```xml
     <configuration>
@@ -267,7 +267,7 @@ The following set of steps must be done on all nodes, including the Name Node
     </configuration>
     ```
 
-5. Create directory for hdfs hosting:
+5. Create directory for hdfs hosting (note that this should match with the configuration of the previous step):
 
     ```bash
     sudo mkdir -p $HADOOP_HOME/data/hdfs/datanode
