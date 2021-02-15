@@ -15,6 +15,9 @@
 5. On the search bar, type *ubuntu* and hit ***enter***. Then select the instance (we are using Ubuntu Server 18) and click on ***Select*** button close to it:<p>
 ![image009](https://user-images.githubusercontent.com/7594950/107884986-b9d09780-6ec5-11eb-8ac1-f3c85a34a369.png)
 
+    a) Optionally you can select an instance configuration from a previously saved image. If you don't know how to generate an image, please check [How-to create an AWS EC2 instance AIM image](generate_EC2_image.md). To select a previous image, in this step just select ***My AMIs*** and then select a saved image:
+    ![image019](https://user-images.githubusercontent.com/7594950/107978377-a76c6180-6f8a-11eb-9da4-3ca73a0b3ff1.png)
+
 6. Choose the instance type (we are using the one eligible for free tier) and then click on ***Next: Configure Instance Details*** button<p>
 ![image010](https://user-images.githubusercontent.com/7594950/107884999-c228d280-6ec5-11eb-9410-af0af99b99bd.png)
 
