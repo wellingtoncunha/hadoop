@@ -6,41 +6,43 @@ The very first step (assuming you already has an AWS account) is to generate a P
 
 ## Provisioning an EC2 image with Hadoop and JAVA
 
-To make it easy for configuring our cluster, we are going to provision an EC2 instance, install JAVA, Hadoop and some other commom components for any node and then generate an image that we can use in the future to provision machines like that.
+To make it easy for configuring our cluster, we are going to provision an EC2 instance, install JAVA, Hadoop and some other common components for any node and then generate an image that we can use in the future to provision machines like that.
 
 1. First, we need to create an EC2 instance. If you are not familiar with that, please, check [How-to provision an EC2 instance](provision_ec2_server.md)
 
-2. Once the server is available, we are going now to connect (SSH) to it:<p\>
+2. Once the server is available, we are going now to connect (SSH) to it:
 
     ```bash
     ssh -i ~/Downloads/hadoop.pem ubuntu@<Public IPv4 address>
     ```
 
-3. Then, inside the server, we first update apt and install nano (yes, I like it way more than vim):<p\>
+    **Note**: I'm using a Mac, on Windows machines you will need an application like [Putty](www.putty.org). This is the only step that is different. The next ones, once you are connected into the EC2 Linux Instance (using Putty, or any other application), are exactly the same.
+
+3. Once inside the EC2 Instance, we first update apt and install nano (yes, I like it way more than vim):
 
     ```bash
     sudo apt-get update && sudo apt-get dist-upgrade -y && sudo apt install nano -y
     ```
 
-4. Now, we are going to install JAVA (version 8 is the one that is working with this version of Hadoop, so, "if it is working don't touch it!"):<p\>
+4. Now, we are going to install JAVA (version 8 is the one that is working with this version of Hadoop and as the old saying goes: "if it is working don't touch it!"):
 
     ```bash
     sudo apt-get install openjdk-8-jdk -y
     ```
 
-5. We are going now to download Hadoop version 2.8 (again, it is working). This may take a while:<p\>
+5. We are going now to download Hadoop version 2.8 (again, it is working). This may take a while:
 
     ```bash
     wget https://archive.apache.org/dist/hadoop/core/hadoop-2.8.1/hadoop-2.8.1.tar.gz -P ~/Downloads
     ```
 
-6. Extract Hadoop to the folder where you want to have its installation:<p\>
+6. Extract Hadoop to the folder where you want to have its installation:
 
     ```bash
     sudo tar zxvf ~/Downloads/hadoop-2.8.1.tar.gz -C /usr/local
     ```
 
-7. Just to make things neat, let's remove the tar file and rename the folder by removing the version of it:<p\>
+7. Just to make things neat, let's remove the tar file and rename the folder by removing the version of it:
 
     ```bash
     # Remove installation file
@@ -50,7 +52,7 @@ To make it easy for configuring our cluster, we are going to provision an EC2 in
     sudo mv /usr/local/hadoop-2.8.1 /usr/local/hadoop
     ```
 
-8. We now need to add the environment variables to some files in order to have them set. The reason for setting them on those differents files is that there are slightly differences on where those variables should be place, depending on the configuration of the OS. Better be safe than sorry! Here are the variables that we are going to set:<p\>
+8. We now need to add the environment variables to some files in order to have them set during boot. The reason for setting them on those differents files is that there are slightly differences on where those variables should be placed, depending on the configuration of the OS. Better be safe than sorry! Here are the variables that we are going to set:
 
     ```bash
     # JAVA configurations
@@ -119,10 +121,10 @@ In this step we are going to provisioning 4 instances from the image that we jus
 
 We are now going to configure the initial settings Name Node. So, let's first pick one of the instances to be our name node. We are going to configure it and replicated the configuration for the data nodes:
 
-1. Once the EC2 instances are available, pick one of them to be the Name Node. At this point, I am just changing its Name tag to state that it is my name node (take the chance to copy the Public IPv4 Address):<p\>
+1. Once the EC2 instances are available, pick one of them to be the Name Node. At this point, I am also changing its Name tag to state that it is my name node (take the chance to copy the Public IPv4 Address):
 ![image203](https://user-images.githubusercontent.com/7594950/107979306-59585d80-6f8c-11eb-9d4a-84453f2ffe31.png)
 
-2. In order to get access to the data nodes from inside the Name Node, you need to use the same PEM Key. So, let's copy that into our name node:<p\>
+2. In order to get access to the data nodes from inside the Name Node, you need to use the same PEM Key. So, let's copy that into our name node:
 
     ```bash
     scp -i ~/Downloads/hadoop.pem ~/Downloads/hadoop.pem ubuntu@<Public IPv4 address>:~/.ssh/ 
@@ -140,7 +142,7 @@ We are now going to configure the initial settings Name Node. So, let's first pi
     nano ~/.ssh/config
     ```
 
-5. To configure the file, we need to get the Private IPv4 address from every name node. We must use the Private IP address because this IP is fixed for your instances, while a new Public IP address is assigned to the instance everytime that it is rebooted. It is a good chance to update the name of data nodes (I am using "Hadoop Data Node - 1", "Hadoop Data Node - 2", etc.). With the Private IPv4 addresses written down add the following to the file just created on previous step:
+5. To configure the file, we need to get the Private IPv4 address from every name node. We must use the Private IP address because this IP is fixed for your instances, while a new Public IP address is assigned to the instance everytime that it is rebooted. It is a good chance to update the name of data nodes (I am using "Hadoop Data Node - 1", "Hadoop Data Node - 2", etc.). With the Private IPv4 addresses written down, add the following to the file just created on previous step:
 
     ```bash
     Host datanode1 #You can use any alias you want for the hosts
@@ -180,7 +182,7 @@ We are now going to configure the initial settings Name Node. So, let's first pi
 
 ## Common configuration for all nodes
 
-The following set of steps must be done on all nodes, including the Name Node
+The following set of 6 steps must be done on all nodes, including the Name Node
 
 1. Configure the **core-site.xml** file:
 
